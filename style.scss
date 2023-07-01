@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+@import "reset";
+
+@mixin flexbox($direction, $justify-content, $align-items) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+//! Colors
+//? Primary
+
+$Orange: hsl(25, 97%, 53%);
+
+//? Neutral
+
+$White: hsl(0, 0%, 100%);
+$Light_Grey: hsl(217, 12%, 63%);
+$Medium_Grey: hsl(216, 12%, 54%);
+$Dark_Blue: hsl(213, 19%, 18%);
+$Very_Dark_Blue: hsl(216, 12%, 8%);
+
+//! Typography
+
+//? Font Weight
+
+$Regular: 400;
+$Bold: 700;
+
+body {
+    position: relative;
+    font-family: 'Overpass', sans-serif;
+    background-color: $Very_Dark_Blue;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.375rem;
+    font-weight: $Bold;
+}
+
+p, span{
+    color: $Medium_Grey;
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+}
+
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    padding: 1.375rem;
+    height: clamp(22.5rem, 40vw, 26rem);
+    width: clamp(20.5rem, 40vw, 26rem);
+    background-color: hsl(213, 19%, 14%);
+    border-radius: 1rem;
+    color: $White
+}
+
+#rating_state {
+    display: block;
+
+    .circle {
+        @include flexbox(row, center, center);
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50%;
+        background-color: $Dark_Blue;
+        margin-bottom: 1.25rem;
+
+    }
+
+    p{
+        margin-bottom: 1.875rem;
+    }
+
+    .score {
+        @include flexbox(row, space-between, center);
+        gap: 1rem;
+    }
+
+    #submit {
+        width: 100%;
+        font-weight: $Bold;
+        padding: 1rem;
+        background-color: $Orange;
+        color: $White;
+        letter-spacing: 0.125rem;
+        text-transform: uppercase;
+        border: 0px;
+        border-radius: 9rem;
+        cursor: pointer;
+    }
+
+    
+}
+
+
+.thank_you {
+    display: none;
+    text-align: center;
+
+    &__img {
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .review {
+        margin-inline: auto;
+        color: $Orange;
+        padding: 0.5rem;
+        width: 10.5rem;
+        background: $Dark_Blue;
+        border-radius: 9rem;
+        margin-bottom: 1.75rem;
+    }
+
+    #score_review {
+        color: $Orange;
+    }
+}
+
+.bg-orange {
+    background-color: $Orange !important;
+    color: $White !important;
+}
+
+@keyframes color-transition {
+    0% {
+        background-color: $Dark_Blue;
+    }
+    50% {
+        background-color: $Orange; 
+    }
+    100% {
+        background-color: $Dark_Blue ;
+    }
+  }
+
+.animate-color-transition {
+    animation-name: color-transition !important;
+    animation-duration: 500ms !important;
+    animation-timing-function: ease-in-out !important;
+}
+
+@media (min-width: 64rem) {
+
+    .card {
+        padding: 2rem;
+    }
+
+    #rating_state {
+
+    .rating {
+        transition: all 200ms ease-in-out;
+        &:hover {
+            background-color: $Light_Grey;
+            color: $White;
+            cursor: pointer;
+        }  
+    }
+    
+    .circle {
+        height: 3.25rem;
+        width: 3.25rem;
+        margin-bottom: 2rem;
+    }
+    }
+
+    .thank_you {
+        padding: 2.75rem;
+
+        &__img {
+            margin-bottom: 2rem;
+        }
+    }
+
+}
